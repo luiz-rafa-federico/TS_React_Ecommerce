@@ -27,7 +27,7 @@ const Login = () => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IUserDataLogin>({
     resolver: yupResolver(schema),
   });
 

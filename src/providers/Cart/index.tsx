@@ -1,6 +1,5 @@
-import { ReactNode } from "react";
+import { ReactNode, Dispatch, SetStateAction } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { IProduct } from "../../types/product";
 
 interface ICartProviderProps {
@@ -11,43 +10,29 @@ interface ICartProviderData {
   cart: IProduct[];
   addToCart: (item: IProduct, id: number) => void;
   removeFromCart: (id: number) => void;
+  setCart: Dispatch<SetStateAction<IProduct[]>>;
 }
 
 const CartContext = createContext<ICartProviderData>({} as ICartProviderData);
 
 export const CartProvider = ({ children }: ICartProviderProps) => {
-  const [cart, setCart] = useState<IProduct[]>(() => {
-    const local: IProduct[] = JSON.parse(localStorage.getItem("cart"));
-
-    if (local !== undefined) {
-      return cart;
-    } else {
-      return [];
-    }
-  });
+  const [cart, setCart] = useState<IProduct[]>([] as IProduct[]);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (item: IProduct, id: number) => {
-    const itemOnCart = cart.find(
-      (itemOnCart: IProduct) => itemOnCart.id === id
-    );
-    if (!cart.includes(itemOnCart)) {
-      setCart([...cart, item]);
-    } else {
-      toast.error("ERRO! Produtos duplicados não podem ser incluídos.");
-    }
+  const addToCart = (item: IProduct) => {
+    setCart([...cart, item]);
   };
 
   const removeFromCart = (id: number) => {
-    const newCart = cart.filter((itemOnCart: IProduct) => itemOnCart.id !== id);
+    const newCart = cart.filter((item) => item.id !== id);
     setCart(newCart);
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ setCart, cart, addToCart, removeFromCart }}>
       {children}
     </CartContext.Provider>
   );

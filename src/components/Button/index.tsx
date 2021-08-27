@@ -7,8 +7,9 @@ interface IButtonProps {
   type?: "button" | "submit" | "reset";
 }
 
-const Button = ({ children, ...rest }: IButtonProps) => (
-  <Container {...rest}>{children}</Container>
-);
+const Button: React.FC<IButtonProps> = ({
+  children,
+  ...rest
+}: IButtonProps) => <Container {...rest}>{children}</Container>;
 
 export default Button;

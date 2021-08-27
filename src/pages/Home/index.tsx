@@ -27,19 +27,17 @@ const Home = () => {
           <>
             <ProductCardContainer>
               {products // eslint-disable-next-line
-                .filter((product) => {
+                .filter((item) => {
                   if (searchInput === "") {
-                    return <Product key={product.id} product={product} />;
+                    return <Product key={item.id} product={item} />;
                   } else if (
-                    product.name
-                      .toLowerCase()
-                      .includes(searchInput.toLowerCase())
+                    item.name.toLowerCase().includes(searchInput.toLowerCase())
                   ) {
-                    return <Product key={product.id} product={product} />;
+                    return <Product key={item.id} product={item} />;
                   }
                 })
-                .map((product) => (
-                  <Product key={product.id} product={product} />
+                .map((item) => (
+                  <Product key={item.id} product={item} />
                 ))}
             </ProductCardContainer>
           </>

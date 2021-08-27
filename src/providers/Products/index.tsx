@@ -23,14 +23,16 @@ const ProductsContext = createContext<IProductsProviderData>(
   {} as IProductsProviderData
 );
 
-export const ProductsProvider = ({ children }: IProductsProviderProps) => {
+export const ProductsProvider: React.FC<IProductsProviderProps> = ({
+  children,
+}: IProductsProviderProps) => {
   const [products, setProducts] = useState<IProduct[]>([] as IProduct[]);
   const [loading, setLoading] = useState<boolean>(true);
 
   async function loadProducts() {
     const response = await api.get("/products/");
 
-    const data = response.data.map((product: IProduct) => ({
+    const data = response.data.map((product: IProduct[]) => ({
       ...product,
       priceFormatted: formatValue(product.price),
     }));

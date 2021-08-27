@@ -3,7 +3,7 @@ import { useCart } from "../../providers/Cart";
 import Button from "../Button";
 import { IProduct } from "../../types/product";
 
-const ProductOnCart = ({ product }: IProduct) => {
+const ProductOnCart: React.FC<IProduct> = ({ product }: IProduct) => {
   const { removeFromCart } = useCart();
 
   const { id, name, priceFormatted, image_url } = product;
@@ -30,7 +30,7 @@ const ProductOnCart = ({ product }: IProduct) => {
             <span>{priceFormatted}</span>
           </td>
           <td className="tdBtn">
-            <Button type="button" onClick={() => removeFromCart(id)}>
+            <Button type="button" onClick={() => removeFromCart(id!)}>
               <span>Remover</span>
             </Button>
           </td>

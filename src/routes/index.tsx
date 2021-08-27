@@ -6,7 +6,7 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import { AnimatePresence } from "framer-motion";
 
-const Routes = () => {
+const Routes: React.FC = () => {
   return (
     <AnimatePresence>
       <Switch>
