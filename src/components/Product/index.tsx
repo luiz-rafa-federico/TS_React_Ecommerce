@@ -3,22 +3,19 @@ import { useCart } from "../../providers/Cart";
 import Button from "../Button";
 import { IProduct } from "../../types/product";
 
-const Product = ({ product }: IProduct) => {
+const Product = ({ product }: IProduct[]) => {
   const { addToCart } = useCart();
 
-  const { id, name, priceFormatted, image_url, description } = product;
+  const { id, title, priceFormatted, image } = product;
 
   return (
     <ProductCard>
       <li key={id}>
         <figure>
-          <img src={image_url} alt={name} />
+          <img src={image} alt={title} />
         </figure>
         <div className="productInfo">
-          <strong>{name}</strong>
-          <div>
-            <span>{description}</span>
-          </div>
+          <strong>{title}</strong>
           <div>
             <span>{priceFormatted}</span>
           </div>

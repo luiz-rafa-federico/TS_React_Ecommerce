@@ -5,8 +5,15 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import { AnimatePresence } from "framer-motion";
+import { ComponentType } from "react";
 
-const Routes: React.FC = () => {
+// interface IRouteProps {
+//   path: string;
+//   exact: boolean;
+//   component: ComponentType<React.FC>;
+// }
+
+const Routes = () => {
   return (
     <AnimatePresence>
       <Switch>

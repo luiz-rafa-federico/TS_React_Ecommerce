@@ -1,12 +1,11 @@
 import { ProductCard } from "./styles";
 import { useCart } from "../../providers/Cart";
 import Button from "../Button";
-import { IProduct } from "../../types/product";
 
-const ProductOnCart: React.FC<IProduct> = ({ product }: IProduct) => {
+const ProductOnCart = ({ product }) => {
   const { removeFromCart } = useCart();
 
-  const { id, name, priceFormatted, image_url } = product;
+  const { id, title, priceFormatted, image } = product;
 
   return (
     <ProductCard key={id}>
@@ -21,16 +20,16 @@ const ProductOnCart: React.FC<IProduct> = ({ product }: IProduct) => {
       <tbody>
         <tr>
           <td className="tdPic">
-            <img src={image_url} alt={name} />
+            <img src={image} alt={title} />
           </td>
           <td>
-            <strong>{name}</strong>
+            <strong>{title}</strong>
           </td>
           <td>
             <span>{priceFormatted}</span>
           </td>
           <td className="tdBtn">
-            <Button type="button" onClick={() => removeFromCart(id!)}>
+            <Button type="button" onClick={() => removeFromCart(id)}>
               <span>Remover</span>
             </Button>
           </td>

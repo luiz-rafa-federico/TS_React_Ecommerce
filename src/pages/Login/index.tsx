@@ -15,7 +15,7 @@ const Login = () => {
   const history = useHistory();
 
   const schema = yup.object().shape({
-    username: yup.string().required("Campo obrigatório"),
+    email: yup.string().email("Email inválido").required("Campo obrigatório"),
     password: yup
       .string()
       .min(6, "Mínimo de 6 digitos")
@@ -52,12 +52,12 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmitFunction)}>
           <div>
             <TextField
-              label="username"
+              label="email"
               variant="outlined"
               size="medium"
-              {...register("username")}
-              error={!!errors.username}
-              helperText={errors.username?.message}
+              {...register("email")}
+              error={!!errors.email}
+              helperText={errors.email?.message}
             />
           </div>
           <div>

@@ -32,9 +32,9 @@ export const ProductsProvider: React.FC<IProductsProviderProps> = ({
   async function loadProducts() {
     const response = await api.get("/products/");
 
-    const data = response.data.map((product: IProduct[]) => ({
+    const data = response.data.map((product: IProduct) => ({
       ...product,
-      priceFormatted: formatValue(product.price),
+      priceFormatted: formatValue(product.price!),
     }));
 
     setLoading(false);
