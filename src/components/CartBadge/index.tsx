@@ -3,6 +3,7 @@ import Badge from "@material-ui/core/Badge";
 import { Theme, withStyles, createStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { useCart } from "../../providers/Cart";
 
 const StyledBadge = withStyles((theme: Theme) =>
   createStyles({
@@ -11,15 +12,16 @@ const StyledBadge = withStyles((theme: Theme) =>
       top: 26,
       border: `2px solid ${theme.palette.background.paper}`,
       padding: "0 4px",
-      //color: `#5956e9 ${theme.palette.primary.color}`,
     },
   })
 )(Badge);
 
 export default function CustomizedBadges() {
+  const { cart } = useCart();
+
   return (
     <IconButton aria-label="cart">
-      <StyledBadge badgeContent={4} color="secondary">
+      <StyledBadge badgeContent={cart.length} color="primary">
         <ShoppingCartIcon />
       </StyledBadge>
     </IconButton>

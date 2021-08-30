@@ -1,11 +1,12 @@
 import { ProductCard } from "./styles";
 import { useCart } from "../../providers/Cart";
 import Button from "../Button";
+import { IProduct } from "../../types/product";
 
-const ProductOnCart = ({ product }) => {
+const ProductOnCart = ({ product }: { product: IProduct }) => {
   const { removeFromCart } = useCart();
 
-  const { id, title, priceFormatted, image } = product;
+  const { id, name, priceFormatted, image_url } = product;
 
   return (
     <ProductCard key={id}>
@@ -20,10 +21,10 @@ const ProductOnCart = ({ product }) => {
       <tbody>
         <tr>
           <td className="tdPic">
-            <img src={image} alt={title} />
+            <img src={image_url} alt={name} />
           </td>
           <td>
-            <strong>{title}</strong>
+            <strong>{name}</strong>
           </td>
           <td>
             <span>{priceFormatted}</span>
